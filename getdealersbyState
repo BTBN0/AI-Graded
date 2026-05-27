@@ -1,3 +1,79 @@
 curl http://127.0.0.1:8000/djangoapp/get_dealers/Kansas/
 
-{"status": 200, "dealers": [{"id": 1, "full_name": "Salena Motors", "city": "Wichita", "address": "123 Main St", "zip": "67201", "lat": 37.6872, "long": -97.3301, "short_name": "salena_motors", "st": "KS", "state": "Kansas"}, {"id": 2, "full_name": "Sunshine Cars", "city": "Topeka", "address": "456 Oak Ave", "zip": "66601", "lat": 39.0558, "long": -95.6894, "short_name": "sunshine_cars", "st": "KS", "state": "Kansas"}, {"id": 3, "full_name": "Prairie Auto Group", "city": "Kansas City", "address": "789 Elm Blvd", "zip": "66101", "lat": 39.0997, "long": -94.5786, "short_name": "prairie_auto", "st": "KS", "state": "Kansas"}]}
+{
+    "status": 200,
+    "dealers": [
+        {
+            "id": 1,
+            "full_name": "Salena Motors",
+            "city": "Wichita",
+            "address": "123 Main St",
+            "zip": "67201",
+            "lat": 37.6872,
+            "long": -97.3301,
+            "short_name": "salena_motors",
+            "st": "KS",
+            "state": "Kansas"
+        },
+        {
+            "id": 2,
+            "full_name": "Sunshine Cars",
+            "city": "Topeka",
+            "address": "456 Oak Ave",
+            "zip": "66601",
+            "lat": 39.0558,
+            "long": -95.6894,
+            "short_name": "sunshine_cars",
+            "st": "KS",
+            "state": "Kansas"
+        },
+        {
+            "id": 3,
+            "full_name": "Prairie Auto Group",
+            "city": "Kansas City",
+            "address": "789 Elm Blvd",
+            "zip": "66101",
+            "lat": 39.0997,
+            "long": -94.5786,
+            "short_name": "prairie_auto",
+            "st": "KS",
+            "state": "Kansas"
+        },
+        {
+            "id": 4,
+            "full_name": "Heartland Motors",
+            "city": "Overland Park",
+            "address": "321 Oak St",
+            "zip": "66212",
+            "lat": 38.9822,
+            "long": -94.6708,
+            "short_name": "heartland_motors",
+            "st": "KS",
+            "state": "Kansas"
+        },
+        {
+            "id": 5,
+            "full_name": "Flint Hills Auto",
+            "city": "Manhattan",
+            "address": "654 Pine Ave",
+            "zip": "66502",
+            "lat": 39.1836,
+            "long": -96.5717,
+            "short_name": "flint_hills",
+            "st": "KS",
+            "state": "Kansas"
+        },
+        {
+            "id": 6,
+            "full_name": "Sunflower Dealership",
+            "city": "Lawrence",
+            "address": "987 Maple Dr",
+            "zip": "66044",
+            "lat": 38.9717,
+            "long": -95.2353,
+            "short_name": "sunflower_deal",
+            "st": "KS",
+            "state": "Kansas"
+        }
+    ]
+}

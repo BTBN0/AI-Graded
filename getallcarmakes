@@ -1,3 +1,166 @@
 curl http://127.0.0.1:8000/djangoapp/get_cars/
 
-{"CarMakes": [{"make": "NISSAN", "models": [{"name": "Pathfinder", "type": "SUV", "year": 2023}, {"name": "Qashqai", "type": "SUV", "year": 2022}, {"name": "XTRAIL", "type": "SUV", "year": 2021}]}, {"make": "Mercedes", "models": [{"name": "A-Class", "type": "SUV", "year": 2023}, {"name": "C-Class", "type": "Sedan", "year": 2023}, {"name": "E-Class", "type": "Sedan", "year": 2023}]}, {"make": "Audi", "models": [{"name": "A4", "type": "Sedan", "year": 2023}, {"name": "A5", "type": "Coupe", "year": 2022}, {"name": "A6", "type": "Sedan", "year": 2023}]}, {"make": "Kia", "models": [{"name": "Sorento", "type": "SUV", "year": 2023}, {"name": "Carnival", "type": "SUV", "year": 2023}, {"name": "Cerato", "type": "Sedan", "year": 2023}]}, {"make": "Toyota", "models": [{"name": "Corolla", "type": "Sedan", "year": 2023}, {"name": "Camry", "type": "Sedan", "year": 2023}, {"name": "RAV4", "type": "SUV", "year": 2023}]}, {"make": "Honda", "models": [{"name": "Civic", "type": "Sedan", "year": 2023}, {"name": "Accord", "type": "Sedan", "year": 2023}, {"name": "CR-V", "type": "SUV", "year": 2023}]}, {"make": "Ford", "models": [{"name": "Mustang", "type": "Coupe", "year": 2023}, {"name": "Explorer", "type": "SUV", "year": 2023}, {"name": "F-150", "type": "Truck", "year": 2023}]}, {"make": "Chevrolet", "models": [{"name": "Malibu", "type": "Sedan", "year": 2023}, {"name": "Tahoe", "type": "SUV", "year": 2023}, {"name": "Silverado", "type": "Truck", "year": 2023}]}]}
+{
+    "CarMakes": [
+        {
+            "make": "NISSAN",
+            "models": [
+                {
+                    "name": "Pathfinder",
+                    "type": "SUV",
+                    "year": 2023
+                },
+                {
+                    "name": "Qashqai",
+                    "type": "SUV",
+                    "year": 2022
+                },
+                {
+                    "name": "XTRAIL",
+                    "type": "SUV",
+                    "year": 2021
+                }
+            ]
+        },
+        {
+            "make": "Mercedes",
+            "models": [
+                {
+                    "name": "A-Class",
+                    "type": "SUV",
+                    "year": 2023
+                },
+                {
+                    "name": "C-Class",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "E-Class",
+                    "type": "Sedan",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "make": "Audi",
+            "models": [
+                {
+                    "name": "A4",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "A5",
+                    "type": "Coupe",
+                    "year": 2022
+                },
+                {
+                    "name": "A6",
+                    "type": "Sedan",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "make": "Kia",
+            "models": [
+                {
+                    "name": "Sorento",
+                    "type": "SUV",
+                    "year": 2023
+                },
+                {
+                    "name": "Carnival",
+                    "type": "SUV",
+                    "year": 2023
+                },
+                {
+                    "name": "Cerato",
+                    "type": "Sedan",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "make": "Toyota",
+            "models": [
+                {
+                    "name": "Corolla",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "Camry",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "RAV4",
+                    "type": "SUV",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "make": "Honda",
+            "models": [
+                {
+                    "name": "Civic",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "Accord",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "CR-V",
+                    "type": "SUV",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "make": "Ford",
+            "models": [
+                {
+                    "name": "Mustang",
+                    "type": "Coupe",
+                    "year": 2023
+                },
+                {
+                    "name": "Explorer",
+                    "type": "SUV",
+                    "year": 2023
+                },
+                {
+                    "name": "F-150",
+                    "type": "Truck",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "make": "Chevrolet",
+            "models": [
+                {
+                    "name": "Malibu",
+                    "type": "Sedan",
+                    "year": 2023
+                },
+                {
+                    "name": "Tahoe",
+                    "type": "SUV",
+                    "year": 2023
+                },
+                {
+                    "name": "Silverado",
+                    "type": "Truck",
+                    "year": 2023
+                }
+            ]
+        }
+    ]
+}

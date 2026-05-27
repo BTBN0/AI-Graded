@@ -1,3 +1,31 @@
 curl http://127.0.0.1:8000/djangoapp/reviews/dealer/1/
 
-{"status": 200, "reviews": [{"id": 1, "dealer_id": 1, "reviewer": "Alice", "review": "Great service!", "sentiment": "positive", "purchase": true, "car_make": "Toyota", "car_model": "Camry", "car_year": 2022}, {"id": 2, "dealer_id": 1, "reviewer": "Bob", "review": "Very helpful staff.", "sentiment": "positive", "purchase": false, "car_make": "Honda", "car_model": "Civic", "car_year": 2021}]}
+{
+    "status": 200,
+    "reviews": [
+        {
+            "id": 1,
+            "dealer_id": 1,
+            "reviewer_name": "Alice Johnson",
+            "review": "Excellent customer service and smooth process",
+            "sentiment": "positive",
+            "purchase": true,
+            "purchase_date": "2026-05-18",
+            "car_make": "Honda",
+            "car_model": "Civic",
+            "car_year": 2022
+        },
+        {
+            "id": 2,
+            "dealer_id": 1,
+            "reviewer_name": "Mark Smith",
+            "review": "Very helpful staff, highly recommended",
+            "sentiment": "positive",
+            "purchase": true,
+            "purchase_date": "2026-04-10",
+            "car_make": "Toyota",
+            "car_model": "Camry",
+            "car_year": 2023
+        }
+    ]
+}
