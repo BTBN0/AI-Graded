@@ -1,0 +1,3 @@
+curl http://127.0.0.1:8000/djangoapp/dealer/1/
+
+{"status": 200, "dealer": {"id": 1, "full_name": "Salena Motors", "city": "Wichita", "address": "123 Main St", "zip": "67201", "lat": 37.6872, "long": -97.3301, "short_name": "salena_motors", "st": "KS", "state": "Kansas"}}
