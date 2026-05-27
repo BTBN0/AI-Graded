@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
@@ -184,3 +184,17 @@ def add_review(request):
         })
         return JsonResponse({"status": 200})
     return JsonResponse({"error": "POST required"}, status=405)
+
+
+def post_review_page(request):
+    import os
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'server', 'frontend', 'static', 'PostReview.html')
+    with open(path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read())
+
+
+def added_review_page(request):
+    import os
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'server', 'frontend', 'static', 'AddedReview.html')
+    with open(path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read())

@@ -185,3 +185,15 @@ C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
 Watching for file changes with StatReloader
 C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
 Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
+Watching for file changes with StatReloader

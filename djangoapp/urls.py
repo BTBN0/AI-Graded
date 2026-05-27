@@ -4,6 +4,8 @@ from . import views
 app_name = 'djangoapp'
 
 urlpatterns = [
+    path('postreview/', views.post_review_page, name='post_review'),
+    path('addedreview/', views.added_review_page, name='added_review'),
     path('', views.get_dealerships, name='index'),
     path('get_dealers/', views.get_dealerships, name='get_dealers'),
     path('get_dealers/<str:state>/', views.get_dealerships, name='get_dealers_by_state'),

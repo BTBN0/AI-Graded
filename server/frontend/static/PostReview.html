@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Review - Best Cars Dealership</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="brand">Best Cars</div>
+        <div>
+            <a href="/djangoapp/get_dealers/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <span style="color:#e94560; margin-left:15px;">testuser</span>
+        </div>
+    </nav>
+
+    <div class="hero" style="padding:40px 20px;">
+        <h1>Post a Review</h1>
+        <p>Share your experience with Salena Motors</p>
+    </div>
+
+    <div class="container">
+        <div class="card" style="max-width:600px; margin:0 auto;">
+            <h2 style="color:#1a1a2e; margin-bottom:20px;">Dealer: Salena Motors - Wichita, KS</h2>
+
+            <form id="reviewForm">
+                <div style="margin-bottom:15px;">
+                    <label style="font-weight:bold;">Purchase Date</label>
+                    <input type="date" value="2026-05-27"
+                        style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;margin-top:5px;">
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label style="font-weight:bold;">Did you purchase a car?</label><br>
+                    <input type="checkbox" id="purchase" checked style="margin-top:8px;">
+                    <label for="purchase"> Yes, I purchased a car</label>
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label style="font-weight:bold;">Car Make</label>
+                    <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;margin-top:5px;">
+                        <option>Toyota</option>
+                        <option>Honda</option>
+                        <option selected>Chevrolet</option>
+                        <option>Ford</option>
+                        <option>Nissan</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label style="font-weight:bold;">Car Model</label>
+                    <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;margin-top:5px;">
+                        <option>Camry</option>
+                        <option>Civic</option>
+                        <option selected>Malibu</option>
+                        <option>Mustang</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label style="font-weight:bold;">Car Year</label>
+                    <input type="number" value="2023"
+                        style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;margin-top:5px;">
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label style="font-weight:bold;">Your Review</label>
+                    <textarea rows="5"
+                        style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;margin-top:5px;">Fantastic services! The staff was very helpful and the process was smooth. I highly recommend this dealership to anyone looking for a great car buying experience.</textarea>
+                </div>
+
+                <button type="submit"
+                    style="width:100%;padding:14px;background:#e94560;color:#fff;border:none;border-radius:5px;font-size:16px;cursor:pointer;">
+                    Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Best Cars Dealership. All rights reserved.</p>
+    </footer>
+</body>
+</html>
