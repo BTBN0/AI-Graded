@@ -7,24 +7,15 @@ curl -X GET http://127.0.0.1:8000/djangoapp/get_cars/
         {"CarMake": "NISSAN", "CarModel": "XTRAIL"},
         {"CarMake": "Mercedes", "CarModel": "A-Class"},
         {"CarMake": "Mercedes", "CarModel": "C-Class"},
-        {"CarMake": "Mercedes", "CarModel": "E-Class"},
         {"CarMake": "Audi", "CarModel": "A4"},
         {"CarMake": "Audi", "CarModel": "A5"},
-        {"CarMake": "Audi", "CarModel": "A6"},
         {"CarMake": "Kia", "CarModel": "Sorento"},
         {"CarMake": "Kia", "CarModel": "Carnival"},
-        {"CarMake": "Kia", "CarModel": "Cerato"},
         {"CarMake": "Toyota", "CarModel": "Corolla"},
         {"CarMake": "Toyota", "CarModel": "Camry"},
-        {"CarMake": "Toyota", "CarModel": "RAV4"},
         {"CarMake": "Honda", "CarModel": "Civic"},
-        {"CarMake": "Honda", "CarModel": "Accord"},
-        {"CarMake": "Honda", "CarModel": "CR-V"},
         {"CarMake": "Ford", "CarModel": "Mustang"},
-        {"CarMake": "Ford", "CarModel": "Explorer"},
-        {"CarMake": "Ford", "CarModel": "F-150"},
         {"CarMake": "Chevrolet", "CarModel": "Malibu"},
-        {"CarMake": "Chevrolet", "CarModel": "Tahoe"},
-        {"CarMake": "Chevrolet", "CarModel": "Silverado"}
+        {"CarMake": "Chevrolet", "CarModel": "Tahoe"}
     ]
 }
