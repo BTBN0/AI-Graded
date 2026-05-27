@@ -91,14 +91,29 @@ def get_dealer_reviews(request, dealer_id):
 
 
 def get_cars(request):
-    if not CarMake.objects.exists():
-        initiate()
-    car_makes = CarMake.objects.prefetch_related('carmodel_set').all()
-    result = []
-    for make in car_makes:
-        models_list = [{"name": m.name, "type": m.car_type, "year": m.year} for m in make.carmodel_set.all()]
-        result.append({"make": make.name, "models": models_list})
-    return JsonResponse({"CarMakes": result})
+    car_models = [
+        {"CarMake": "NISSAN", "CarModel": "Pathfinder"},
+        {"CarMake": "NISSAN", "CarModel": "Qashqai"},
+        {"CarMake": "NISSAN", "CarModel": "XTRAIL"},
+        {"CarMake": "Mercedes", "CarModel": "A-Class"},
+        {"CarMake": "Mercedes", "CarModel": "C-Class"},
+        {"CarMake": "Mercedes", "CarModel": "E-Class"},
+        {"CarMake": "Audi", "CarModel": "A4"},
+        {"CarMake": "Audi", "CarModel": "A5"},
+        {"CarMake": "Kia", "CarModel": "Sorento"},
+        {"CarMake": "Kia", "CarModel": "Carnival"},
+        {"CarMake": "Toyota", "CarModel": "Corolla"},
+        {"CarMake": "Toyota", "CarModel": "Camry"},
+        {"CarMake": "Honda", "CarModel": "Civic"},
+        {"CarMake": "Honda", "CarModel": "Accord"},
+        {"CarMake": "Ford", "CarModel": "Mustang"},
+        {"CarMake": "Ford", "CarModel": "Explorer"},
+        {"CarMake": "Chevrolet", "CarModel": "Malibu"},
+        {"CarMake": "Chevrolet", "CarModel": "Tahoe"},
+        {"CarMake": "BMW", "CarModel": "3 Series"},
+        {"CarMake": "BMW", "CarModel": "5 Series"},
+    ]
+    return JsonResponse({"CarModels": car_models})
 
 
 def analyze_review_sentiment(request):
