@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealerships - Best Cars</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+        nav { background: #1a1a2e; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        nav .brand { font-size: 22px; font-weight: bold; color: #e94560; }
+        nav a { color: #fff; text-decoration: none; margin-left: 15px; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        h1 { color: #1a1a2e; }
+        .filter-bar { margin-bottom: 20px; }
+        select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ddd; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th { background: #1a1a2e; color: #fff; padding: 12px 15px; text-align: left; }
+        td { padding: 10px 15px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f9f9f9; }
+        .review-btn { background: #e94560; color: #fff; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 13px; }
+        .user-bar { text-align: right; margin-bottom: 10px; color: #555; }
+        footer { text-align: center; padding: 20px; color: #888; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="brand">Best Cars</div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <span id="user-nav"></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Dealerships</h1>
+        <div class="user-bar" id="user-bar"></div>
+
+        <div class="filter-bar">
+            <label><strong>Filter by State:</strong> </label>
+            <select id="state-select" onchange="filterByState(this.value)">
+                <option value="All">All States</option>
+            </select>
+        </div>
+
+        <table id="dealer-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Dealer Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="dealer-body"></tbody>
+        </table>
+    </div>
+
+    <footer><p>&copy; 2026 Best Cars Dealership. All rights reserved.</p></footer>
+
+    <script>
+        const userName = sessionStorage.getItem('username');
+        if (userName) {
+            document.getElementById('user-bar').innerHTML = `Welcome, <strong>${userName}</strong> | <a href="/djangoapp/logout/">Logout</a>`;
+            document.getElementById('user-nav').innerHTML = ` | <span style="color:#e94560">${userName}</span>`;
+        } else {
+            document.getElementById('user-bar').innerHTML = '<a href="/login">Login</a> | <a href="/register">Register</a>';
+        }
+
+        let allDealers = [];
+
+        async function loadDealers(state = 'All') {
+            let url = '/djangoapp/get_dealers/';
+            if (state !== 'All') url = `/djangoapp/get_dealers/${state}/`;
+            const res = await fetch(url);
+            const data = await res.json();
+            return data.dealers || [];
+        }
+
+        function renderDealers(dealers) {
+            const tbody = document.getElementById('dealer-body');
+            tbody.innerHTML = '';
+            dealers.forEach(d => {
+                const row = `<tr>
+                    <td>${d.id}</td>
+                    <td>${d.full_name}</td>
+                    <td>${d.city}</td>
+                    <td>${d.state}</td>
+                    <td>${d.zip}</td>
+                    <td><a class="review-btn" href="/dealer/${d.id}">Review Dealer</a></td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function populateStates(dealers) {
+            const states = [...new Set(dealers.map(d => d.state))].sort();
+            const sel = document.getElementById('state-select');
+            states.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s; opt.textContent = s;
+                sel.appendChild(opt);
+            });
+        }
+
+        async function filterByState(state) {
+            const dealers = await loadDealers(state);
+            renderDealers(dealers);
+        }
+
+        (async () => {
+            allDealers = await loadDealers();
+            populateStates(allDealers);
+            renderDealers(allDealers);
+        })();
+    </script>
+</body>
+</html>

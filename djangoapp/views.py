@@ -96,13 +96,14 @@ def get_cars(request):
     car_makes = CarMake.objects.prefetch_related('carmodel_set').all()
     result = []
     for make in car_makes:
-        models_list = [{"name": m.name, "type": m.car_type, "year": m.year} for m in make.carmodel_set.all()]
+        models_list = [{"model": m.name, "type": m.car_type, "year": m.year} for m in make.carmodel_set.all()]
         result.append({"make": make.name, "models": models_list})
     return JsonResponse({"CarMakes": result})
 
 
-def analyze_review_sentiment(request):
-    text = request.GET.get("text", "")
+def analyze_review_sentiment(request, text=None):
+    if not text:
+        text = request.GET.get("text", "")
     if not text:
         return JsonResponse({"sentiment": "unknown"})
 
@@ -184,6 +185,13 @@ def add_review(request):
         })
         return JsonResponse({"status": 200})
     return JsonResponse({"error": "POST required"}, status=405)
+
+
+def dealers_page(request):
+    import os
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'server', 'frontend', 'static', 'Dealers.html')
+    with open(path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read())
 
 
 def post_review_page(request):
