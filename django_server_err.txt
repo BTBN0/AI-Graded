@@ -181,3 +181,7 @@ Forbidden (CSRF token from POST incorrect.): /admin/login/
 [27/May/2026 13:31:46] "GET /static/admin/js/inlines.js HTTP/1.1" 304 0
 [27/May/2026 13:31:46] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 [27/May/2026 13:31:47] "GET /static/admin/img/inline-delete.svg HTTP/1.1" 304 0
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\baysa\OneDrive\Desktop\AI-Graded\djangoapp\views.py changed, reloading.
+Watching for file changes with StatReloader
