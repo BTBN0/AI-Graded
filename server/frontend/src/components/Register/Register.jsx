@@ -46,6 +46,7 @@ function Register() {
             name="userName"
             value={form.userName}
             onChange={handleChange}
+            placeholder="Username"
             required
             style={{ width: "100%", padding: 10, border: "1px solid #ddd", borderRadius: 5, marginTop: 5 }}
           />
@@ -57,6 +58,7 @@ function Register() {
             name="firstName"
             value={form.firstName}
             onChange={handleChange}
+            placeholder="First Name"
             required
             style={{ width: "100%", padding: 10, border: "1px solid #ddd", borderRadius: 5, marginTop: 5 }}
           />
@@ -68,6 +70,7 @@ function Register() {
             name="lastName"
             value={form.lastName}
             onChange={handleChange}
+            placeholder="Last Name"
             required
             style={{ width: "100%", padding: 10, border: "1px solid #ddd", borderRadius: 5, marginTop: 5 }}
           />
@@ -79,6 +82,7 @@ function Register() {
             name="email"
             value={form.email}
             onChange={handleChange}
+            placeholder="Email"
             required
             style={{ width: "100%", padding: 10, border: "1px solid #ddd", borderRadius: 5, marginTop: 5 }}
           />
@@ -90,6 +94,7 @@ function Register() {
             name="password"
             value={form.password}
             onChange={handleChange}
+            placeholder="Password"
             required
             style={{ width: "100%", padding: 10, border: "1px solid #ddd", borderRadius: 5, marginTop: 5 }}
           />
