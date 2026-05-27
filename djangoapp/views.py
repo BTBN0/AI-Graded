@@ -96,14 +96,13 @@ def get_cars(request):
     car_makes = CarMake.objects.prefetch_related('carmodel_set').all()
     result = []
     for make in car_makes:
-        models_list = [{"model": m.name, "type": m.car_type, "year": m.year} for m in make.carmodel_set.all()]
+        models_list = [{"name": m.name, "type": m.car_type, "year": m.year} for m in make.carmodel_set.all()]
         result.append({"make": make.name, "models": models_list})
     return JsonResponse({"CarMakes": result})
 
 
-def analyze_review_sentiment(request, text=None):
-    if not text:
-        text = request.GET.get("text", "")
+def analyze_review_sentiment(request):
+    text = request.GET.get("text", "")
     if not text:
         return JsonResponse({"sentiment": "unknown"})
 

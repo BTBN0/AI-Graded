@@ -9,6 +9,7 @@
         nav { background: #1a1a2e; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
         nav .brand { font-size: 22px; font-weight: bold; color: #e94560; }
         nav a { color: #fff; text-decoration: none; margin-left: 15px; }
+        nav button { background: #e94560; color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; margin-left: 10px; }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         h1 { color: #1a1a2e; }
         .filter-bar { margin-bottom: 20px; }
@@ -20,25 +21,44 @@
         .review-btn { background: #e94560; color: #fff; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 13px; }
         .user-bar { text-align: right; margin-bottom: 10px; color: #555; }
         footer { text-align: center; padding: 20px; color: #888; margin-top: 40px; }
+        .login-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center; }
+        .login-box { background:#fff; padding:30px; border-radius:10px; width:300px; }
+        .login-box h3 { margin-bottom:15px; color:#1a1a2e; }
+        .login-box input { width:100%; padding:8px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px; box-sizing:border-box; }
+        .login-box button { width:100%; padding:10px; background:#e94560; color:#fff; border:none; border-radius:5px; cursor:pointer; }
+        .login-box .close-btn { background:#aaa; margin-top:8px; }
+        #login-msg { color:red; font-size:13px; margin-bottom:8px; }
     </style>
 </head>
 <body>
     <nav>
         <div class="brand">Best Cars</div>
         <div>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <span id="user-nav"></span>
+            <a href="/djangoapp/">Home</a>
+            <span id="user-nav">
+                <button onclick="document.getElementById('login-modal').style.display='flex'">Login</button>
+            </span>
         </div>
     </nav>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="login-modal">
+        <div class="login-box">
+            <h3>Login</h3>
+            <p id="login-msg"></p>
+            <input type="text" id="login-user" placeholder="Username" value="testuser">
+            <input type="password" id="login-pass" placeholder="Password" value="testpass123">
+            <button onclick="doLogin()">Login</button>
+            <button class="close-btn" onclick="document.getElementById('login-modal').style.display='none'">Cancel</button>
+        </div>
+    </div>
 
     <div class="container">
         <h1>Dealerships</h1>
         <div class="user-bar" id="user-bar"></div>
 
         <div class="filter-bar">
-            <label><strong>Filter by State:</strong> </label>
+            <label><strong>Filter by State: </strong></label>
             <select id="state-select" onchange="filterByState(this.value)">
                 <option value="All">All States</option>
             </select>
@@ -62,60 +82,88 @@
     <footer><p>&copy; 2026 Best Cars Dealership. All rights reserved.</p></footer>
 
     <script>
-        const userName = sessionStorage.getItem('username');
-        if (userName) {
-            document.getElementById('user-bar').innerHTML = `Welcome, <strong>${userName}</strong> | <a href="/djangoapp/logout/">Logout</a>`;
-            document.getElementById('user-nav').innerHTML = ` | <span style="color:#e94560">${userName}</span>`;
-        } else {
-            document.getElementById('user-bar').innerHTML = '<a href="/login">Login</a> | <a href="/register">Register</a>';
+        function updateUserBar() {
+            var userName = sessionStorage.getItem('username');
+            if (userName) {
+                document.getElementById('user-nav').innerHTML = '<span style="color:#e94560;margin-left:10px">Welcome, <strong>' + userName + '</strong></span><button onclick="doLogout()" style="margin-left:10px;background:#555;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer">Logout</button>';
+                document.getElementById('user-bar').innerHTML = 'Logged in as: <strong>' + userName + '</strong>';
+            } else {
+                document.getElementById('user-nav').innerHTML = '<button onclick="document.getElementById(\'login-modal\').style.display=\'flex\'" style="background:#e94560;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;margin-left:10px">Login</button>';
+                document.getElementById('user-bar').innerHTML = '';
+            }
         }
 
-        let allDealers = [];
+        async function doLogin() {
+            var user = document.getElementById('login-user').value;
+            var pass = document.getElementById('login-pass').value;
+            var res = await fetch('/djangoapp/login/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({userName: user, password: pass})
+            });
+            var data = await res.json();
+            if (data.status === 'Authenticated') {
+                sessionStorage.setItem('username', data.userName);
+                document.getElementById('login-modal').style.display = 'none';
+                updateUserBar();
+                renderDealers(currentDealers);
+            } else {
+                document.getElementById('login-msg').textContent = 'Login failed. Try testuser / testpass123';
+            }
+        }
 
-        async function loadDealers(state = 'All') {
-            let url = '/djangoapp/get_dealers/';
-            if (state !== 'All') url = `/djangoapp/get_dealers/${state}/`;
-            const res = await fetch(url);
-            const data = await res.json();
+        async function doLogout() {
+            await fetch('/djangoapp/logout/');
+            sessionStorage.removeItem('username');
+            updateUserBar();
+            renderDealers(currentDealers);
+        }
+
+        var currentDealers = [];
+
+        async function loadDealers(state) {
+            var url = '/djangoapp/get_dealers/';
+            if (state && state !== 'All') url = '/djangoapp/get_dealers/' + state + '/';
+            var res = await fetch(url);
+            var data = await res.json();
             return data.dealers || [];
         }
 
         function renderDealers(dealers) {
-            const tbody = document.getElementById('dealer-body');
+            currentDealers = dealers;
+            var userName = sessionStorage.getItem('username');
+            var tbody = document.getElementById('dealer-body');
             tbody.innerHTML = '';
-            dealers.forEach(d => {
-                const row = `<tr>
-                    <td>${d.id}</td>
-                    <td>${d.full_name}</td>
-                    <td>${d.city}</td>
-                    <td>${d.state}</td>
-                    <td>${d.zip}</td>
-                    <td><a class="review-btn" href="/dealer/${d.id}">Review Dealer</a></td>
-                </tr>`;
-                tbody.innerHTML += row;
+            dealers.forEach(function(d) {
+                var action = userName
+                    ? '<a class="review-btn" href="/djangoapp/reviews/dealer/' + d.id + '/">Review Dealer</a>'
+                    : '<span style="color:#aaa;font-size:13px">Login to Review</span>';
+                tbody.innerHTML += '<tr><td>' + d.id + '</td><td>' + d.full_name + '</td><td>' + d.city + '</td><td>' + d.state + '</td><td>' + d.zip + '</td><td>' + action + '</td></tr>';
             });
         }
 
         function populateStates(dealers) {
-            const states = [...new Set(dealers.map(d => d.state))].sort();
-            const sel = document.getElementById('state-select');
-            states.forEach(s => {
-                const opt = document.createElement('option');
+            var states = [];
+            dealers.forEach(function(d) { if (states.indexOf(d.state) === -1) states.push(d.state); });
+            states.sort();
+            var sel = document.getElementById('state-select');
+            states.forEach(function(s) {
+                var opt = document.createElement('option');
                 opt.value = s; opt.textContent = s;
                 sel.appendChild(opt);
             });
         }
 
         async function filterByState(state) {
-            const dealers = await loadDealers(state);
+            var dealers = await loadDealers(state);
             renderDealers(dealers);
         }
 
-        (async () => {
-            allDealers = await loadDealers();
-            populateStates(allDealers);
-            renderDealers(allDealers);
-        })();
+        updateUserBar();
+        loadDealers('All').then(function(dealers) {
+            populateStates(dealers);
+            renderDealers(dealers);
+        });
     </script>
 </body>
 </html>

@@ -7,6 +7,7 @@ urlpatterns = [
     path('postreview/', views.post_review_page, name='post_review'),
     path('addedreview/', views.added_review_page, name='added_review'),
     path('', views.dealers_page, name='index'),
+    path('dealers/', views.dealers_page, name='dealers'),
     path('get_dealers/', views.get_dealerships, name='get_dealers'),
     path('get_dealers/<str:state>/', views.get_dealerships, name='get_dealers_by_state'),
     path('dealer/<int:dealer_id>/', views.get_dealer_details, name='dealer_details'),
