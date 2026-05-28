@@ -1,0 +1,33 @@
+﻿Run Django CI/CD workflow
+
+Triggered by push to main branch.
+
+Jobs:
+  build (ubuntu-latest)
+  
+  Steps:
+  ✓ Checkout code
+  ✓ Set up Python 3.11
+  ✓ Install dependencies
+      - pip install django djangorestframework django-cors-headers
+  ✓ Run Django system checks
+      System check identified no issues (0 silenced).
+  ✓ Run migrations
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying djangoapp.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying sessions.0001_initial... OK
+  ✓ Run tests
+      System check identified no issues (0 silenced).
+      test_get_cars (djangoapp.tests.CarTestCase) ... ok
+      test_get_dealers (djangoapp.tests.DealerTestCase) ... ok
+      test_login (djangoapp.tests.AuthTestCase) ... ok
+      test_logout (djangoapp.tests.AuthTestCase) ... ok
+      ----------------------------------------------------------------------
+      Ran 4 tests in 0.312s
+      OK
+  ✓ Collect static files
+      131 static files copied.
+
+Build succeeded. All steps passed.
